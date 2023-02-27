@@ -17,6 +17,7 @@
 		9473A0ED29ACA3470012F0CF /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9473A0EC29ACA3470012F0CF /* InfoViewController.swift */; };
 		9473A0EF29ACA3820012F0CF /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9473A0EE29ACA3820012F0CF /* PostViewController.swift */; };
 		9473A0F129ACA3BE0012F0CF /* PostTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9473A0F029ACA3BE0012F0CF /* PostTitle.swift */; };
+		9473A0F429ACA8010012F0CF /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9473A0F329ACA8010012F0CF /* ProfileHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		9473A0EC29ACA3470012F0CF /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		9473A0EE29ACA3820012F0CF /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		9473A0F029ACA3BE0012F0CF /* PostTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTitle.swift; sourceTree = "<group>"; };
+		9473A0F329ACA8010012F0CF /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,19 +66,52 @@
 		9473A0CF29ACA0090012F0CF /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				9473A0D029ACA0090012F0CF /* AppDelegate.swift */,
-				9473A0D229ACA0090012F0CF /* SceneDelegate.swift */,
-				9473A0E429ACA2320012F0CF /* TabBarViewController.swift */,
-				9473A0E829ACA2CF0012F0CF /* FeedViewController.swift */,
-				9473A0EA29ACA30D0012F0CF /* ProfileViewController.swift */,
-				9473A0EC29ACA3470012F0CF /* InfoViewController.swift */,
-				9473A0EE29ACA3820012F0CF /* PostViewController.swift */,
-				9473A0F029ACA3BE0012F0CF /* PostTitle.swift */,
 				9473A0D929ACA0090012F0CF /* Assets.xcassets */,
 				9473A0DB29ACA0090012F0CF /* LaunchScreen.storyboard */,
 				9473A0DE29ACA0090012F0CF /* Info.plist */,
+				9473A0F229ACA73F0012F0CF /* Profile */,
+				9473A0FC29ACE1420012F0CF /* ViewControllers */,
+				9473A0FE29ACE26F0012F0CF /* Models */,
+				9473A0FD29ACE1BD0012F0CF /* Support files */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		9473A0F229ACA73F0012F0CF /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				9473A0EA29ACA30D0012F0CF /* ProfileViewController.swift */,
+				9473A0F329ACA8010012F0CF /* ProfileHeaderView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		9473A0FC29ACE1420012F0CF /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9473A0E429ACA2320012F0CF /* TabBarViewController.swift */,
+				9473A0E829ACA2CF0012F0CF /* FeedViewController.swift */,
+				9473A0EC29ACA3470012F0CF /* InfoViewController.swift */,
+				9473A0EE29ACA3820012F0CF /* PostViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		9473A0FD29ACE1BD0012F0CF /* Support files */ = {
+			isa = PBXGroup;
+			children = (
+				9473A0D029ACA0090012F0CF /* AppDelegate.swift */,
+				9473A0D229ACA0090012F0CF /* SceneDelegate.swift */,
+			);
+			path = "Support files";
+			sourceTree = "<group>";
+		};
+		9473A0FE29ACE26F0012F0CF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9473A0F029ACA3BE0012F0CF /* PostTitle.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,6 +188,7 @@
 				9473A0D129ACA0090012F0CF /* AppDelegate.swift in Sources */,
 				9473A0F129ACA3BE0012F0CF /* PostTitle.swift in Sources */,
 				9473A0EF29ACA3820012F0CF /* PostViewController.swift in Sources */,
+				9473A0F429ACA8010012F0CF /* ProfileHeaderView.swift in Sources */,
 				9473A0EB29ACA30D0012F0CF /* ProfileViewController.swift in Sources */,
 				9473A0E929ACA2CF0012F0CF /* FeedViewController.swift in Sources */,
 				9473A0ED29ACA3470012F0CF /* InfoViewController.swift in Sources */,
