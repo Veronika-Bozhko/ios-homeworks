@@ -9,29 +9,39 @@ import UIKit
 
 final class ProfileViewController: UIViewController {
     
-    private let profileHeaderView = ProfileHeaderView()
-    
-    func setupProfileViewController() {
-        profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            profileHeaderView.heightAnchor.constraint(equalToConstant: 220),
-    
-        ])
-    }
+    private lazy var profileView: ProfileHeaderView = {
+        let profileView = ProfileHeaderView()
+        profileView.backgroundColor = .lightGray
+        return profileView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Мой профиль"
-        view.backgroundColor = .lightGray
-        view.addSubview(profileHeaderView)
-        setupProfileViewController()
-        
+        title = "Профиль"
+        view.backgroundColor = .white
+        setupView()
     }
-}
+    
+    private func setupView() {
+        view.addSubview(profileView)
+    }
+    
+    @objc private func statusButtonPressed() {
+        profileView.statusLabel.text = profileView.statusTextField.text
+    }
+
+        internal override func viewWillLayoutSubviews() {
+            profileView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+
+                profileView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                profileView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                profileView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                profileView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])
+        }
+    }
+    
 
     
 

@@ -17,6 +17,7 @@ final class FeedViewController: UIViewController {
         button.setTitle("Смотреть пост", for: .normal)
         button.backgroundColor = .darkGray
         button.titleLabel?.font = .systemFont(ofSize: 20, weight: .black)
+//        print("нажатие \"Смотреть пост\"")
         return button
     }()
     
@@ -28,7 +29,7 @@ final class FeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .white
         setupButtom()
     }
     
@@ -51,4 +52,5 @@ final class FeedViewController: UIViewController {
         // present(postVC, animated: true)
         navigationController?.pushViewController(postVC, animated: true)
     }
+    
 }
