@@ -28,15 +28,14 @@ final class FeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .yellow
+        view.backgroundColor = .lightGray
         setupButtom()
-//        tapAction()
     }
     
     private func setupButtom() {
         view.addSubview(nextPageButton)
         nextPageButton.center = view.center
-        nextPageButton.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
+        nextPageButton.addTarget(self, action: #selector(barItemAction), for: .touchUpInside)
     }
     
     private func makeBarItem() {
@@ -45,15 +44,9 @@ final class FeedViewController: UIViewController {
         barItem.image = .init(systemName: "info.circle.fill")
     }
     
-    @objc private func tapAction() {
-        let profileVC = PostViewController()
-        profileVC.title = "Profale VC"
-        navigationController?.pushViewController(profileVC, animated: true)
-    }
-    
     @objc private func barItemAction() {
         let postVC = PostViewController()
-        postVC.title = "Post VC"
+        postVC.title = "Пост"
         postVC.modalPresentationStyle = .fullScreen
         // present(postVC, animated: true)
         navigationController?.pushViewController(postVC, animated: true)
