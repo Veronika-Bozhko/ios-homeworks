@@ -53,6 +53,8 @@ class ProfileHeaderView: UIView {
         button.layer.cornerRadius = 16
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.7
+//        button.addTarget(self, action: #selector(statusButtonPressed), for: .touchUpInside)
+//        Сделала как просили, но этот тут у меня не работает. Есть ниже такое же действие, там работает без ошибок
         return button
     }()
         
@@ -94,19 +96,6 @@ class ProfileHeaderView: UIView {
         print("\(String(describing: statusTextField.text))")
     }
     
-    
-//    private func setupProfileViewController() {
-//        profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
-//
-//        NSLayoutConstraint.activate([
-//            profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-//            profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            profileHeaderView.heightAnchor.constraint(equalToConstant: 700)
-//        ])
-//    }
-
-
     private func setupProfileHeaderView() {
         
         statusButton.addTarget(self, action: #selector(statusButtonPressed), for: .touchUpInside)
