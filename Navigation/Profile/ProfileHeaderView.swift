@@ -9,22 +9,22 @@ import UIKit
 
 class ProfileHeaderView: UIView {
     
-        private let avatarImageView: UIImageView = {
-            
+    private var statusText: String = ""
+    
+    private lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = #imageLiteral(resourceName: "Batman")
         imageView.contentMode = .scaleAspectFill
-        imageView.backgroundColor = .white
         imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 50.0
-        imageView.layer.borderWidth = 3.0
+        imageView.layer.cornerRadius = 55
+        imageView.layer.borderWidth = 3
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.masksToBounds = true
         return imageView
     }()
         
-    private let fullNameLabel: UILabel = {
+    private lazy var fullNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Ночной защитник"
@@ -33,7 +33,7 @@ class ProfileHeaderView: UIView {
         return label
     }()
         
-    lazy var statusLabel: UILabel = {
+    private lazy var statusLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Ожидание..."
@@ -42,63 +42,76 @@ class ProfileHeaderView: UIView {
         return label
     }()
         
-    let statusButton: UIButton = {
-        var button = UIButton(type: .system)
-        button = UIButton()
+    private lazy var statusButton: UIButton = {
+        var button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Показать статус", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .systemBlue
-        button.layer.shadowOffset = CGSize(width: 4, height: 4)
-        button.layer.cornerRadius = 16
+        button.layer.shadowOffset = CGSizeMake(4.0, 4.0)
+        button.layer.cornerRadius = 14
+        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .regular)
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.7
-//        button.addTarget(self, action: #selector(statusButtonPressed), for: .touchUpInside)
-//        Сделала как просили, но этот тут у меня не работает. Есть ниже такое же действие, там работает без ошибок
+        button.addTarget(self, action: #selector(statusButtonPressed), for: .touchUpInside)
         return button
     }()
         
-    let statusTextField: UITextField = {
+    private lazy var statusTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Введите статус"
+        textField.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         textField.textAlignment = .center
-        textField.backgroundColor = .white
         textField.layer.cornerRadius = 12
         textField.layer.borderWidth = 1
-        textField.layer.borderColor = UIColor.black.cgColor
+        textField.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1).cgColor
         textField.font = .systemFont(ofSize: 15, weight: .regular)
-        textField.textColor = .black
+        textField.addTarget(self, action: #selector(textFieldAction), for: .editingChanged)
         return textField
     }()
     
     override init(frame: CGRect) {
-        super.init(frame: .zero)
-        addSubview()
-        setupProfileHeaderView()
+        super.init(frame: frame)
+        addSubView()
+        addTab()
+    }
+        
+    private func addTab() {
+        let tab = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        addGestureRecognizer(tab)
+    }
+    
+    @objc private func hideKeyboard() {
+        endEditing(true)
     }
         
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    @objc private func avatarButtonAction(selector: UIButton) {
+        statusLabel.text = statusText
+    }
+    
+    @objc private func textFieldAction(_ textField: UITextField) {
+        if textField.text?.isEmpty != nil {
+            statusText = textField.text!
+        }
+    }
+    
+    @objc private func statusButtonPressed() {
+        statusLabel.text = statusTextField.text
+        print("\(String(describing: statusTextField.text))")
+    }
 
-    func addSubview() {
+    func addSubView() {
         addSubview(avatarImageView)
         addSubview(fullNameLabel)
         addSubview(statusLabel)
         addSubview(statusTextField)
         addSubview(statusButton)
-
-    }
         
-    @objc private func statusButtonPressed() {
-        statusLabel.text = statusTextField.text
-        print("\(String(describing: statusTextField.text))")
-    }
-    
-    private func setupProfileHeaderView() {
-        
-        statusButton.addTarget(self, action: #selector(statusButtonPressed), for: .touchUpInside)
         NSLayoutConstraint.activate([
                 
             avatarImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),

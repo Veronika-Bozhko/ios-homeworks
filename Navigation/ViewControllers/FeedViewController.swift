@@ -9,43 +9,47 @@ import UIKit
 
 final class FeedViewController: UIViewController {
     
-    private let postTitle = Post(title: "PostStrucTitle")
+    private let postTitle = Post(title: "Post")
     
     private let stackView: UIStackView = {
-        $0.axis = .vertical
-         $0.spacing = 10
-         $0.backgroundColor = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
-         $0.alignment = .center
-         $0.distribution = .fillEqually
-         $0.translatesAutoresizingMaskIntoConstraints = false
-         return $0
-     }(UIStackView())
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        stackView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        stackView.alignment = .center
+        stackView.distribution = .fillEqually
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+
     
-    private let newTopButton: UIButton = {
-        var topButton = UIButton(type: .system)
-        topButton = UIButton()
-        topButton.translatesAutoresizingMaskIntoConstraints = false
-        topButton.setTitle("Смотреть пост", for: .normal)
-        topButton.setTitleColor(.white, for: .normal)
-        topButton.backgroundColor = .systemBlue
-        topButton.layer.shadowOffset = CGSize(width: 4, height: 4)
-        topButton.layer.cornerRadius = 16
-        topButton.layer.shadowColor = UIColor.black.cgColor
-        topButton.layer.shadowOpacity = 0.7
-        return topButton
+    private lazy var topButtom: UIButton = {
+        var topButtom = UIButton()
+        topButtom.setTitle("Смотреть пост", for: .normal)
+        topButtom.tintColor = .white
+        topButtom.backgroundColor = .systemBlue
+        topButtom.layer.cornerRadius = 16
+        topButtom.titleLabel?.font = .systemFont(ofSize: 20, weight: .semibold)
+        topButtom.layer.shadowColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1).cgColor
+        topButtom.layer.shadowOpacity = 0.7
+        topButtom.layer.shadowOffset = CGSizeMake(0.0, 5.0)
+        topButtom.addTarget(self, action: #selector(actionPostButton), for: .touchUpInside)
+        topButtom.translatesAutoresizingMaskIntoConstraints = false
+        return topButtom
     }()
     
-    private let newBottomButton: UIButton = {
-        var bottomButton = UIButton(type: .system)
-        bottomButton = UIButton()
-        bottomButton.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var bottomButton: UIButton = {
+        var bottomButton = UIButton()
         bottomButton.setTitle("Смотреть пост", for: .normal)
-        bottomButton.setTitleColor(.white, for: .normal)
+        bottomButton.tintColor = .white
         bottomButton.backgroundColor = .systemBlue
-        bottomButton.layer.shadowOffset = CGSize(width: 4, height: 4)
         bottomButton.layer.cornerRadius = 16
-        bottomButton.layer.shadowColor = UIColor.black.cgColor
+        bottomButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .semibold)
+        bottomButton.layer.shadowColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1).cgColor
         bottomButton.layer.shadowOpacity = 0.7
+        bottomButton.layer.shadowOffset = CGSizeMake(0.0, 5.0)
+        bottomButton.addTarget(self, action: #selector(actionPostButton), for: .touchUpInside)
+        bottomButton.translatesAutoresizingMaskIntoConstraints = false
         return bottomButton
     }()
     
@@ -53,9 +57,8 @@ final class FeedViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         title = "Feed"
-        view.addSubview(newTopButton)
-        view.addSubview(newBottomButton)
         setupButtom()
+        setupConstraints()
     }
     
     @objc func actionPostButton() {
@@ -65,42 +68,23 @@ final class FeedViewController: UIViewController {
     }
     
     private func setupButtom() {
-        view.addSubview(newTopButton)
-        view.addSubview(newBottomButton)
-        newTopButton.center = view.center
-        newTopButton.addTarget(self, action: #selector(barItemAction), for: .touchUpInside)
-        newBottomButton.center = view.center
-        newBottomButton.addTarget(self, action: #selector(barItemAction), for: .touchUpInside)
+        view.addSubview(stackView)
+        stackView.addArrangedSubview(topButtom)
+        stackView.addArrangedSubview(bottomButton)
+
     }
-    
-    private func makeBarItem() {
-        let barItem = UIBarButtonItem(title: "Info", style: .plain, target: self, action: #selector(barItemAction))
-        navigationItem.rightBarButtonItem = barItem
-        barItem.image = .init(systemName: "info.circle.fill")
-    }
-    
-    @objc private func barItemAction() {
-        let postVC = PostViewController()
-        postVC.title = "Пост"
-        postVC.modalPresentationStyle = .fullScreen
-        // present(postVC, animated: true)
-        navigationController?.pushViewController(postVC, animated: true)
-    }
-    
-    internal override func viewWillLayoutSubviews() {
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+
+    private func setupConstraints() {
+
         NSLayoutConstraint.activate([
             
-            newTopButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
-            newTopButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            newTopButton.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -32),
-            newTopButton.heightAnchor.constraint(equalToConstant: 100),
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
+            stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
+            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
             
-            newBottomButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -200),
-            newBottomButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
-            newBottomButton.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -32),
-            newBottomButton.heightAnchor.constraint(equalToConstant: 100)
-            
+            topButtom.widthAnchor.constraint(equalToConstant: 50),
+            bottomButton.widthAnchor.constraint(equalToConstant: 50)
         ])
     }
 }
