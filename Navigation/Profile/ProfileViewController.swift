@@ -33,7 +33,7 @@ final class ProfileViewController: UIViewController {
         super.viewDidLoad()
         title = "Profile"
         view.backgroundColor = .white
-        view.addSubview(profileView)
+//        view.addSubview(profileView)
         view.addSubview(newBottomButton)
         setupView()
         

@@ -23,19 +23,19 @@ final class FeedViewController: UIViewController {
     }()
 
     
-    private lazy var topButtom: UIButton = {
-        var topButtom = UIButton()
-        topButtom.setTitle("Смотреть пост", for: .normal)
-        topButtom.tintColor = .white
-        topButtom.backgroundColor = .systemBlue
-        topButtom.layer.cornerRadius = 16
-        topButtom.titleLabel?.font = .systemFont(ofSize: 20, weight: .semibold)
-        topButtom.layer.shadowColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1).cgColor
-        topButtom.layer.shadowOpacity = 0.7
-        topButtom.layer.shadowOffset = CGSizeMake(0.0, 5.0)
-        topButtom.addTarget(self, action: #selector(actionPostButton), for: .touchUpInside)
-        topButtom.translatesAutoresizingMaskIntoConstraints = false
-        return topButtom
+    private lazy var topButton: UIButton = {
+        var topButton = UIButton()
+        topButton.setTitle("Смотреть пост", for: .normal)
+        topButton.tintColor = .white
+        topButton.backgroundColor = .systemBlue
+        topButton.layer.cornerRadius = 16
+        topButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .semibold)
+        topButton.layer.shadowColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1).cgColor
+        topButton.layer.shadowOpacity = 0.7
+        topButton.layer.shadowOffset = CGSizeMake(0.0, 5.0)
+        topButton.addTarget(self, action: #selector(actionPostButton), for: .touchUpInside)
+        topButton.translatesAutoresizingMaskIntoConstraints = false
+        return topButton
     }()
     
     private lazy var bottomButton: UIButton = {
@@ -57,7 +57,7 @@ final class FeedViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         title = "Feed"
-        setupButtom()
+        setupButton()
         setupConstraints()
     }
     
@@ -67,9 +67,9 @@ final class FeedViewController: UIViewController {
         navigationController?.pushViewController(postVC, animated: true)
     }
     
-    private func setupButtom() {
+    private func setupButton() {
         view.addSubview(stackView)
-        stackView.addArrangedSubview(topButtom)
+        stackView.addArrangedSubview(topButton)
         stackView.addArrangedSubview(bottomButton)
 
     }
@@ -83,7 +83,7 @@ final class FeedViewController: UIViewController {
             stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
             stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
             
-            topButtom.widthAnchor.constraint(equalToConstant: 50),
+            topButton.widthAnchor.constraint(equalToConstant: 50),
             bottomButton.widthAnchor.constraint(equalToConstant: 50)
         ])
     }
