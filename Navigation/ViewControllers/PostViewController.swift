@@ -12,13 +12,13 @@ final class PostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        barBattonItem()
+        barButtonItem()
     }
     
-    private func barBattonItem() {
-        lazy var barBatton = UIBarButtonItem(title: "Info", style: .plain, target: self, action: #selector(barItemAction))
-        navigationItem.rightBarButtonItem = barBatton
-        barBatton.image = .init(systemName: "info.circle.fill")
+    private func barButtonItem() {
+        lazy var barButton = UIBarButtonItem(title: "Info", style: .plain, target: self, action: #selector(barItemAction))
+        navigationItem.rightBarButtonItem = barButton
+        barButton.image = .init(systemName: "info.circle.fill")
     }
     
     @objc private func barItemAction() {
