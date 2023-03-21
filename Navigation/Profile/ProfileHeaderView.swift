@@ -61,11 +61,11 @@ class ProfileHeaderView: UIView {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Введите статус"
-        textField.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         textField.textAlignment = .center
+        textField.backgroundColor = .white
         textField.layer.cornerRadius = 12
         textField.layer.borderWidth = 1
-        textField.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1).cgColor
+        textField.layer.borderColor = UIColor.black.cgColor
         textField.font = .systemFont(ofSize: 15, weight: .regular)
         textField.addTarget(self, action: #selector(textFieldAction), for: .editingChanged)
         return textField
@@ -140,5 +140,18 @@ class ProfileHeaderView: UIView {
             statusButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
-    
+}
+
+//MARK: - Blocking Set Status Button if there is no text
+extension ProfileHeaderView: UITextFieldDelegate {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        guard let text = textField.text else { return }
+        statusButton.isEnabled = !text.isEmpty
+    }
+
+    //MARK: - Remove The Keyboard
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        endEditing(true)
+        return true
+    }
 }

@@ -82,33 +82,10 @@ final class LogInViewController: UIViewController {
             button.layer.cornerRadius = 10
             button.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]
             button.clipsToBounds = true
+            button.addTarget(self, action: #selector(tapLoginAction), for: .touchUpInside)
             button.translatesAutoresizingMaskIntoConstraints = false
             return button
         }()
-    
-//        override init(frame: CGRect) {
-//            super.init(frame: frame)
-//            backgroundColor = .white
-//            setupView()
-//            setupConstraints()
-//            addTap()
-//        }
-//
-//        required init?(coder: NSCoder) {
-//            fatalError()
-//        }
-    
-//        //MARK: - Setup View
-//        private func setupView() {
-//            view.addSubview(scrollView)
-//            scrollView.addSubview(contentView)
-//            contentView.addSubview(logoImageView)
-//            contentView.addSubview(emailTextField)
-//            contentView.addSubview(passwordTextField)
-//            contentView.addSubview(loginButton)
-////            emailTextField.delegate = self
-////            passwordTextField.delegate = self
-//        }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,10 +94,44 @@ final class LogInViewController: UIViewController {
         hideNavigationBar()
         layout()
         setLoginButtonStates()
-        setupLoginButton()
+    }
+    
+    //MARK: - Action Login Button Show ProfileViewController
+    @objc private func tapLoginAction() {
+        let profileVC = ProfileViewController()
+        navigationController?.pushViewController(profileVC, animated: true)
+    }
+    
+    //MARK: - Keyboard Observers
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        notification.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        notification.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    //MARK: - Unsubscribe From Observers
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        notification.removeObserver(UIResponder.keyboardWillShowNotification)
+        notification.removeObserver(UIResponder.keyboardWillHideNotification)
+    }
+    
+    //MARK: - Keyboard Display
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            scrollView.contentInset.bottom = keyboardSize.height
+            scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+        }
+    }
+    
+    //MARK: - Hiding the Keyboard
+    @objc private func keyboardWillHide() {
+        scrollView.contentInset = .zero
+        scrollView.verticalScrollIndicatorInsets = .zero
     }
     
     func setLoginButtonStates() {
+        
         switch loginButton.state {
         case .normal: loginButton.alpha = 1
         case .selected: loginButton.alpha = 0.5
@@ -129,10 +140,6 @@ final class LogInViewController: UIViewController {
         default:
             break
         }
-    }
-    
-    private func setupLoginButton() {
-        loginButton.addTarget(self, action: #selector(actionloginButton), for: .touchUpInside)
     }
     
     private func layout() {
@@ -177,46 +184,5 @@ final class LogInViewController: UIViewController {
             loginButton.heightAnchor.constraint(equalToConstant: 50),
             loginButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
-    }
-    
-    //MARK: - Action Login Button Show ProfileViewController
-    @objc func actionloginButton() {
-        let profileVC = ProfileViewController()
-        navigationController?.pushViewController(profileVC, animated: true)
-    }
-
-    //MARK: - Keyboard Observers
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        notification.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        notification.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    //MARK: - Unsubscribe From Observers
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        notification.removeObserver(UIResponder.keyboardWillShowNotification)
-        notification.removeObserver(UIResponder.keyboardWillHideNotification)
-    }
-
-    //MARK: - Keyboard Display
-    @objc private func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            scrollView.contentInset.bottom = keyboardSize.height
-            scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
-        }
-    }
-
-    //MARK: - Hiding the Keyboard
-    @objc private func keyboardWillHide() {
-        scrollView.contentInset = .zero
-        scrollView.verticalScrollIndicatorInsets = .zero
-    }
-}
-
-//MARK: - Hide Navigation Bar
-extension LogInViewController {
-    func hideNavigationBar() {
-        navigationController?.setNavigationBarHidden(true, animated: true)
     }
 }
