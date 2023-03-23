@@ -17,8 +17,8 @@ class ProfileHeaderView: UIView {
         image.contentMode = .scaleAspectFill
         image.backgroundColor = .white
         image.clipsToBounds = true
-        image.layer.cornerRadius = 50.0
-        image.layer.borderWidth = 3.0
+        image.layer.cornerRadius = 50
+        image.layer.borderWidth = 3
         image.layer.borderColor = UIColor.white.cgColor
         image.layer.masksToBounds = true
         return image
