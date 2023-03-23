@@ -7,12 +7,7 @@
 
 import UIKit
 
-extension UIView {
-    static var identifier: String {
-        String(describing: self)
-    }
-}
-
+// MARK: - Hex color extension
 extension UIColor {
     public convenience init?(hex: String) {
         let r, g, b, a: CGFloat
@@ -44,7 +39,7 @@ extension UIColor {
 let myColor = UIColor(hex: "#4885CC")
 
 
-// MARK: - Extension for indenting text in an input field
+// MARK: - extension for indenting text in an input field
 extension UITextField {
     func indent(size:CGFloat) {
         self.leftView = UIView(frame: CGRect(x: self.frame.minX, y: self.frame.minY, width: size, height: self.frame.height))
@@ -52,7 +47,7 @@ extension UITextField {
     }
 }
 
-// MARK: - Keyboard hide extension
+// MARK: - keyboard hide extension
 extension LogInViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
@@ -60,9 +55,23 @@ extension LogInViewController: UITextFieldDelegate {
     }
 }
 
-// MARK: - Hide Navigation Bar
+// MARK: - navbar hide extension
 extension LogInViewController {
     func hideNavigationBar() {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+}
+
+// MARK: - navbar display extension
+extension PhotosViewController {
+    func showNavigationBar() {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+}
+
+// MARK: - extension identifier
+extension UIView {
+    static var identifier: String {
+        String(describing: self)
     }
 }
