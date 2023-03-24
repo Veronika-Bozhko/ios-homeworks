@@ -8,25 +8,13 @@
 import UIKit
 
 class PostTableViewCell: UITableViewCell {
-    
-    //MARK: - Post Image
-    private lazy var postImage: UIImageView = {
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.contentMode = .scaleAspectFill
-        image.clipsToBounds = true
-        image.layer.cornerRadius = 6
-        image.layer.borderColor = UIColor.systemGray.cgColor
-        image.backgroundColor = UIColor(named: "ColorBackground")
-        return image
-    }()
 
     //MARK: - Add Author Label
     private lazy var authorLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        label.textColor = UIColor(named: "ColorLabel")
+        label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -34,7 +22,7 @@ class PostTableViewCell: UITableViewCell {
     //MARK: - Add Image View
     private lazy var myImageView: UIImageView = {
         let view = UIImageView()
-        view.backgroundColor = UIColor(named: "ColorBackground")
+        view.backgroundColor = .black
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -45,7 +33,7 @@ class PostTableViewCell: UITableViewCell {
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14, weight: .regular)
-        label.textColor = UIColor(named: "BorderStatusTextField")
+        label.textColor = .systemGray
         label.numberOfLines = 0
         label.textAlignment = .justified
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -56,7 +44,7 @@ class PostTableViewCell: UITableViewCell {
     private lazy var likesLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        label.textColor = UIColor(named: "ColorLabel")
+        label.textColor = .black
         label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -66,7 +54,7 @@ class PostTableViewCell: UITableViewCell {
     private lazy var viewsLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        label.textColor = UIColor(named: "ColorLabel")
+        label.textColor = .black
         label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -127,3 +115,4 @@ class PostTableViewCell: UITableViewCell {
         ])
     }
 }
+

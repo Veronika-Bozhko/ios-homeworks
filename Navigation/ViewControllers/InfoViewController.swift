@@ -9,13 +9,7 @@ import UIKit
 
 class InfoViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
-          setupButton()
-          
-      }
-
+    //MARK: - Add Back Button
     private lazy var backButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 300, height: 50))
         button.layer.cornerRadius = 16
@@ -25,13 +19,21 @@ class InfoViewController: UIViewController {
         button.backgroundColor = .darkGray
         return button
     }()
-            
+        
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+          setupButton()
+      }
+    
+    //MARK: - Setup Button
     private func setupButton() {
         view.addSubview(backButton)
         backButton.center = view.center
         backButton.addTarget(self, action: #selector(backAction), for: .touchUpInside)
     }
     
+    //MARK: - Action Back Button
     @objc private func backAction() {
         
         let alert = UIAlertController(title: "Уверены?", message: nil, preferredStyle: .alert)
@@ -45,7 +47,6 @@ class InfoViewController: UIViewController {
         alert.addAction(cancelAction)
         alert.addAction(okAction)
         present(alert, animated: true)
-        
     }
 }
     
