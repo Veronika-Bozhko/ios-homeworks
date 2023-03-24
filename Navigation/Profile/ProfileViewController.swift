@@ -46,6 +46,7 @@ final class ProfileViewController: UIViewController {
         ])
     }
 }
+
 extension ProfileViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -78,7 +79,6 @@ extension ProfileViewController: UITableViewDataSource {
             navigationController?.pushViewController(photosVC, animated: true)
         }
    
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }

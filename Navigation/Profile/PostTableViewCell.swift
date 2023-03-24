@@ -17,7 +17,7 @@ class PostTableViewCell: UITableViewCell {
         image.clipsToBounds = true
         image.layer.cornerRadius = 6
         image.layer.borderColor = UIColor.systemGray.cgColor
-        image.backgroundColor = .black
+        image.backgroundColor = UIColor(named: "ColorBackground")
         return image
     }()
 

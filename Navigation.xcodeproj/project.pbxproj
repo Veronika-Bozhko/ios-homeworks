@@ -68,7 +68,6 @@
 			children = (
 				943375C729CCDAE50043706B /* CollectionViewCell.swift */,
 				943375C929CCDB000043706B /* PhotosViewController.swift */,
-				943375CB29CCDB1C0043706B /* Photo.swift */,
 				943375CD29CCDB310043706B /* PhotosTableViewCell.swift */,
 			);
 			path = CollectionView;
@@ -149,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				9473A0F029ACA3BE0012F0CF /* PostTitle.swift */,
+				943375CB29CCDB1C0043706B /* Photo.swift */,
 				94512E4C29C98DB600829E18 /* Model.swift */,
 			);
 			path = Models;

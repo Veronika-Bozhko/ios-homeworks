@@ -14,7 +14,7 @@ final class CollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .white
+        backgroundColor = UIColor(named: "ColorBackground")
         setupCell()
     }
     
@@ -36,6 +36,5 @@ final class CollectionViewCell: UICollectionViewCell {
             imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
-    
 }
 

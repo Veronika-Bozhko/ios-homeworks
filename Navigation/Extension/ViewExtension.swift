@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK: - Hex color extension
+// MARK: - Hex Color Extension
 extension UIColor {
     public convenience init?(hex: String) {
         let r, g, b, a: CGFloat
@@ -47,7 +47,7 @@ extension UITextField {
     }
 }
 
-// MARK: - keyboard hide extension
+// MARK: - Keyboard Hide Extension
 extension LogInViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
@@ -55,21 +55,21 @@ extension LogInViewController: UITextFieldDelegate {
     }
 }
 
-// MARK: - navbar hide extension
+// MARK: - Extension nav`bar hide
 extension LogInViewController {
     func hideNavigationBar() {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
 }
 
-// MARK: - navbar display extension
+// MARK: - Extension nav`bar display
 extension PhotosViewController {
     func showNavigationBar() {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
 }
 
-// MARK: - extension identifier
+// MARK: - Extension Identifier
 extension UIView {
     static var identifier: String {
         String(describing: self)

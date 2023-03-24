@@ -24,7 +24,7 @@ class PhotosViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "ColorBackground")
         navigationItem.title = "Photos Gallery"
         showNavigationBar()
         setupCollectionView()
@@ -61,11 +61,11 @@ extension PhotosViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.identifier, for: indexPath) as? CollectionViewCell else {
             return UICollectionViewCell()
         }
+        
         cell.setupCell()
         cell.imageView.image = UIImage(named: source[indexPath.item].imageName)
         return cell
     }
-    
 }
 
 //MARK: - Extension UICollectionViewDelegateFlowLayout

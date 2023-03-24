@@ -83,8 +83,10 @@ final class PhotosTableViewCell: UITableViewCell {
     
     //MARK: - Setup Layout
     func layout() {
+        
         [photosTextLabel, goToGalleryButton, imageView1, imageView2, imageView3, imageView4].forEach { contentView.addSubview($0) }
         contentView.layer.borderWidth = 0
+        
         let inset: CGFloat = 12
         let insetImage: CGFloat = 8
         let screenWidth = UIScreen.main.bounds.width
