@@ -15,12 +15,14 @@ final class PostViewController: UIViewController {
         barButtonItem()
     }
     
+    //MARK: - Bar Button Item
     private func barButtonItem() {
         lazy var barButton = UIBarButtonItem(title: "Info", style: .plain, target: self, action: #selector(barItemAction))
         navigationItem.rightBarButtonItem = barButton
         barButton.image = .init(systemName: "info.circle.fill")
     }
     
+    //MARK: - Bar Item Action
     @objc private func barItemAction() {
         let infoVC = InfoViewController()
         navigationController?.pushViewController(infoVC, animated: true)

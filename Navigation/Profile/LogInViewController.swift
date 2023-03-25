@@ -43,9 +43,9 @@ final class LogInViewController: UIViewController {
             textField.layer.borderWidth = 0.5
             textField.layer.cornerRadius = 10
             textField.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-            textField.textColor = .black
+            textField.textColor = UIColor(named: "ColorLabel")
             textField.font = .systemFont(ofSize: 16)
-            textField.backgroundColor = #colorLiteral(red: 0.9594197869, green: 0.9599153399, blue: 0.975127399, alpha: 1)
+            textField.backgroundColor = UIColor(named: "ColorBackground")
             textField.placeholder = "Email of phone"
             textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
             textField.leftViewMode = .always
@@ -61,9 +61,9 @@ final class LogInViewController: UIViewController {
             textField.layer.borderWidth = 0.5
             textField.layer.cornerRadius = 10
             textField.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
-            textField.textColor = .black
+            textField.textColor = UIColor(named: "ColorLabel")
             textField.font = .systemFont(ofSize: 16)
-            textField.backgroundColor = #colorLiteral(red: 0.9594197869, green: 0.9599153399, blue: 0.975127399, alpha: 1)
+            textField.backgroundColor = UIColor(named: "ColorBackground")
             textField.placeholder = "Password"
             textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
             textField.leftViewMode = .always
@@ -74,7 +74,7 @@ final class LogInViewController: UIViewController {
         }()
     
         //MARK: - Login Button
-        var loginButton: UIButton = {
+        private lazy var loginButton: UIButton = {
             let button = UIButton()
             button.setTitle("Log in", for: .normal)
             button.setTitleColor(.white, for: .normal)
@@ -89,7 +89,7 @@ final class LogInViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "ColorBackground")
         navigationController?.navigationBar.isHidden = true
         hideNavigationBar()
         layout()
