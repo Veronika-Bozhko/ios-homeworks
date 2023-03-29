@@ -48,7 +48,6 @@ class PhotosViewController: UIViewController {
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
-    
 }
 
 //MARK: - Add Extension UICollectionViewDataSource

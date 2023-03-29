@@ -161,17 +161,6 @@ class ProfileHeaderView: UIView {
     //MARK: - Action Tap for animation
     @objc private func actionTap() {
 
-        addSubview(blackView)
-        addSubview(crossButton)
-        bringSubviewToFront(avatarImageView)
-
-        NSLayoutConstraint.activate([
-            crossButton.topAnchor.constraint(equalTo: topAnchor, constant: 30),
-            crossButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
-            crossButton.widthAnchor.constraint(equalToConstant: 30),
-            crossButton.heightAnchor.constraint(equalToConstant: 30)
-        ])
-
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut) {
             self.blackView.alpha = 0.8
             self.avatarImageView.layer.cornerRadius = 10
@@ -215,15 +204,16 @@ class ProfileHeaderView: UIView {
         addSubview(fullNameLabel)
         addSubview(statusLabel)
         addSubview(statusTextField)
-
-        topImage = avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 20)
-        leadingImage = avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: inset)
-        widthImage = avatarImageView.widthAnchor.constraint(equalToConstant: 100)
-        heightImage = avatarImageView.heightAnchor.constraint(equalToConstant: 100)
+        addSubview(blackView)
+        addSubview(crossButton)
+        bringSubviewToFront(avatarImageView)
 
         NSLayoutConstraint.activate([
-
-            topImage, leadingImage, widthImage, heightImage,
+            
+            avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 20),
+            avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: inset),
+            avatarImageView.widthAnchor.constraint(equalToConstant: 100),
+            avatarImageView.heightAnchor.constraint(equalToConstant: 100),
 
             fullNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
             fullNameLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 130),
@@ -245,6 +235,11 @@ class ProfileHeaderView: UIView {
             setStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -inset),
             setStatusButton.heightAnchor.constraint(equalToConstant: 43),
             setStatusButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
+            
+            crossButton.topAnchor.constraint(equalTo: topAnchor, constant: 30),
+            crossButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
+            crossButton.widthAnchor.constraint(equalToConstant: 30),
+            crossButton.heightAnchor.constraint(equalToConstant: 30)
 
         ])
     }
@@ -252,10 +247,6 @@ class ProfileHeaderView: UIView {
 
 //MARK: - Blocking Set Status Button if there is no text
 extension ProfileHeaderView: UITextFieldDelegate {
-    //    func textFieldDidChangeSelection(_ textField: UITextField) {
-    //        guard let text = textField.text else { return }
-    //        setStatusButton.isEnabled = !text.isEmpty
-    //    }
 
     //MARK: - Remove The Keyboard
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
