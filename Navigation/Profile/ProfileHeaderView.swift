@@ -10,7 +10,10 @@ import UIKit
 class ProfileHeaderView: UIView {
     
     private var statusText: String?
-    private let inset: CGFloat = 16
+    private var topImage = NSLayoutConstraint()
+    private var leadingImage = NSLayoutConstraint()
+    private var widthImage = NSLayoutConstraint()
+    private var heightImage = NSLayoutConstraint()
     
     //MARK: - Add Avatar Image
     private lazy var avatarImageView: UIImageView = {
@@ -109,6 +112,7 @@ class ProfileHeaderView: UIView {
         setupLayout()
         setupGesture()
         addTap()
+        setupAnimationAvatar()
     }
     
     required init?(coder: NSCoder) {
@@ -137,19 +141,12 @@ class ProfileHeaderView: UIView {
     private func addTap() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         addGestureRecognizer(tap)
-
     }
     
     //MARK: - Action Remove Keyboard
     @objc private func hideKeyboard() {
         endEditing(true)
     }
-    
-    //MARK: - Add Constraints for animation
-    private var topImage = NSLayoutConstraint()
-    private var leadingImage = NSLayoutConstraint()
-    private var widthImage = NSLayoutConstraint()
-    private var heightImage = NSLayoutConstraint()
     
     //MARK: - SetupGesture for animation
     private func setupGesture() {
@@ -161,8 +158,8 @@ class ProfileHeaderView: UIView {
     //MARK: - Action Tap for animation
     @objc private func actionTap() {
 
-        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut) {
-            self.blackView.alpha = 0.8
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseInOut) {
+            self.blackView.alpha = 0.7
             self.avatarImageView.layer.cornerRadius = 10
             self.topImage.constant = 100
             self.leadingImage.constant = 0
@@ -194,8 +191,20 @@ class ProfileHeaderView: UIView {
             }
         }
     }
-    
-    
+
+    //MARK: - Setup Animation Avatar
+  private func setupAnimationAvatar() {
+
+        topImage = avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 20)
+        leadingImage = avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16)
+        widthImage = avatarImageView.widthAnchor.constraint(equalToConstant: 100)
+        heightImage = avatarImageView.heightAnchor.constraint(equalToConstant: 100)
+
+        NSLayoutConstraint.activate([
+            topImage, leadingImage, widthImage, heightImage
+        ])
+    }
+
     //MARK: - Setup Layout
     private func setupLayout() {
 
@@ -209,15 +218,15 @@ class ProfileHeaderView: UIView {
         bringSubviewToFront(avatarImageView)
 
         NSLayoutConstraint.activate([
-            
-            avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 20),
-            avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: inset),
-            avatarImageView.widthAnchor.constraint(equalToConstant: 100),
-            avatarImageView.heightAnchor.constraint(equalToConstant: 100),
+
+            crossButton.topAnchor.constraint(equalTo: topAnchor, constant: 30),
+            crossButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
+            crossButton.widthAnchor.constraint(equalToConstant: 30),
+            crossButton.heightAnchor.constraint(equalToConstant: 30),
 
             fullNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
             fullNameLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 130),
-            fullNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -inset),
+            fullNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             fullNameLabel.heightAnchor.constraint(equalToConstant: 20),
 
             statusLabel.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: 30),
@@ -230,17 +239,11 @@ class ProfileHeaderView: UIView {
             statusTextField.trailingAnchor.constraint(equalTo: fullNameLabel.trailingAnchor),
             statusTextField.heightAnchor.constraint(equalToConstant: 40),
 
-            setStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: inset),
-            setStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: inset),
-            setStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -inset),
+            setStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: 16),
+            setStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            setStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             setStatusButton.heightAnchor.constraint(equalToConstant: 43),
-            setStatusButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
-            
-            crossButton.topAnchor.constraint(equalTo: topAnchor, constant: 30),
-            crossButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
-            crossButton.widthAnchor.constraint(equalToConstant: 30),
-            crossButton.heightAnchor.constraint(equalToConstant: 30)
-
+            setStatusButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5)
         ])
     }
 }
