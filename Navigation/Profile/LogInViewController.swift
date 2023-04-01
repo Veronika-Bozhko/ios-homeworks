@@ -21,7 +21,7 @@ final class LogInViewController: UIViewController {
         //MARK: - Content View
         private lazy var contentView: UIView = {
             let view = UIView()
-            view.backgroundColor = .white
+            view.backgroundColor = UIColor(named: "ColorBackground")
             view.translatesAutoresizingMaskIntoConstraints = false
             return view
         }()
