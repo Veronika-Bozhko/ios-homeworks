@@ -40,7 +40,6 @@ struct Source {
             .init(id: 1, imageName: "16"),
             .init(id: 1, imageName: "17"),
             .init(id: 1, imageName: "18"),
-            .init(id: 1, imageName: "18"),
             .init(id: 1, imageName: "19"),
             .init(id: 1, imageName: "20"),
         ]
