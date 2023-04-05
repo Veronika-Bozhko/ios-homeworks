@@ -1,5 +1,5 @@
 //
-//  Photo.swift
+//  CollectionPhotos.swift
 //  Navigation
 //
 //  Created by Veronika Bozhko on 23.03.2023.

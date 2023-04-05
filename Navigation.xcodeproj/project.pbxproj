@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		943375C829CCDAE60043706B /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943375C729CCDAE50043706B /* CollectionViewCell.swift */; };
 		943375CA29CCDB000043706B /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943375C929CCDB000043706B /* PhotosViewController.swift */; };
-		943375CC29CCDB1C0043706B /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943375CB29CCDB1C0043706B /* Photo.swift */; };
+		943375CC29CCDB1C0043706B /* CollectionPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943375CB29CCDB1C0043706B /* CollectionPhotos.swift */; };
 		943375CE29CCDB310043706B /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943375CD29CCDB310043706B /* PhotosTableViewCell.swift */; };
 		94512E4229B77A4300829E18 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94512E4129B77A4300829E18 /* LogInViewController.swift */; };
-		94512E4D29C98DB600829E18 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94512E4C29C98DB600829E18 /* Model.swift */; };
+		94512E4D29C98DB600829E18 /* CollectionPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94512E4C29C98DB600829E18 /* CollectionPost.swift */; };
 		94512E4F29C98E6700829E18 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94512E4E29C98E6700829E18 /* PostTableViewCell.swift */; };
-		94512E5229C9CF9C00829E18 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94512E5129C9CF9C00829E18 /* ViewExtension.swift */; };
+		94512E5229C9CF9C00829E18 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94512E5129C9CF9C00829E18 /* View+Extension.swift */; };
 		9473A0D129ACA0090012F0CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9473A0D029ACA0090012F0CF /* AppDelegate.swift */; };
 		9473A0D329ACA0090012F0CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9473A0D229ACA0090012F0CF /* SceneDelegate.swift */; };
 		9473A0DA29ACA0090012F0CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9473A0D929ACA0090012F0CF /* Assets.xcassets */; };
@@ -31,12 +31,12 @@
 /* Begin PBXFileReference section */
 		943375C729CCDAE50043706B /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		943375C929CCDB000043706B /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
-		943375CB29CCDB1C0043706B /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		943375CB29CCDB1C0043706B /* CollectionPhotos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionPhotos.swift; sourceTree = "<group>"; };
 		943375CD29CCDB310043706B /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		94512E4129B77A4300829E18 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
-		94512E4C29C98DB600829E18 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		94512E4C29C98DB600829E18 /* CollectionPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionPost.swift; sourceTree = "<group>"; };
 		94512E4E29C98E6700829E18 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
-		94512E5129C9CF9C00829E18 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
+		94512E5129C9CF9C00829E18 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		9473A0CD29ACA0090012F0CF /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9473A0D029ACA0090012F0CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9473A0D229ACA0090012F0CF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,20 +63,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		943375C629CCDABE0043706B /* CollectionView */ = {
+		943375C629CCDABE0043706B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9473A0F329ACA8010012F0CF /* ProfileHeaderView.swift */,
+				94512E4E29C98E6700829E18 /* PostTableViewCell.swift */,
 				943375C729CCDAE50043706B /* CollectionViewCell.swift */,
-				943375C929CCDB000043706B /* PhotosViewController.swift */,
 				943375CD29CCDB310043706B /* PhotosTableViewCell.swift */,
 			);
-			path = CollectionView;
+			path = View;
+			sourceTree = "<group>";
+		};
+		943375CF29D8358F0043706B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9473A0D929ACA0090012F0CF /* Assets.xcassets */,
+				9473A0DE29ACA0090012F0CF /* Info.plist */,
+				9473A0DB29ACA0090012F0CF /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		94512E5029C9CF6000829E18 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				94512E5129C9CF9C00829E18 /* ViewExtension.swift */,
+				94512E5129C9CF9C00829E18 /* View+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -100,39 +111,28 @@
 		9473A0CF29ACA0090012F0CF /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				943375C629CCDABE0043706B /* CollectionView */,
-				9473A0D929ACA0090012F0CF /* Assets.xcassets */,
-				9473A0DB29ACA0090012F0CF /* LaunchScreen.storyboard */,
-				9473A0DE29ACA0090012F0CF /* Info.plist */,
+				9473A0FC29ACE1420012F0CF /* Controllers */,
+				943375C629CCDABE0043706B /* View */,
 				94512E5029C9CF6000829E18 /* Extension */,
-				9473A0F229ACA73F0012F0CF /* Profile */,
-				9473A0FC29ACE1420012F0CF /* ViewControllers */,
 				9473A0FE29ACE26F0012F0CF /* Models */,
+				943375CF29D8358F0043706B /* Resources */,
 				9473A0FD29ACE1BD0012F0CF /* Support files */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
 		};
-		9473A0F229ACA73F0012F0CF /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				9473A0EA29ACA30D0012F0CF /* ProfileViewController.swift */,
-				94512E4E29C98E6700829E18 /* PostTableViewCell.swift */,
-				9473A0F329ACA8010012F0CF /* ProfileHeaderView.swift */,
-				94512E4129B77A4300829E18 /* LogInViewController.swift */,
-			);
-			path = Profile;
-			sourceTree = "<group>";
-		};
-		9473A0FC29ACE1420012F0CF /* ViewControllers */ = {
+		9473A0FC29ACE1420012F0CF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				9473A0E429ACA2320012F0CF /* TabBarViewController.swift */,
 				9473A0E829ACA2CF0012F0CF /* FeedViewController.swift */,
 				9473A0EC29ACA3470012F0CF /* InfoViewController.swift */,
 				9473A0EE29ACA3820012F0CF /* PostViewController.swift */,
+				943375C929CCDB000043706B /* PhotosViewController.swift */,
+				94512E4129B77A4300829E18 /* LogInViewController.swift */,
+				9473A0EA29ACA30D0012F0CF /* ProfileViewController.swift */,
 			);
-			path = ViewControllers;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		9473A0FD29ACE1BD0012F0CF /* Support files */ = {
@@ -148,8 +148,8 @@
 			isa = PBXGroup;
 			children = (
 				9473A0F029ACA3BE0012F0CF /* PostTitle.swift */,
-				943375CB29CCDB1C0043706B /* Photo.swift */,
-				94512E4C29C98DB600829E18 /* Model.swift */,
+				943375CB29CCDB1C0043706B /* CollectionPhotos.swift */,
+				94512E4C29C98DB600829E18 /* CollectionPost.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -224,7 +224,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				943375CC29CCDB1C0043706B /* Photo.swift in Sources */,
+				943375CC29CCDB1C0043706B /* CollectionPhotos.swift in Sources */,
 				9473A0E529ACA2320012F0CF /* TabBarViewController.swift in Sources */,
 				9473A0D129ACA0090012F0CF /* AppDelegate.swift in Sources */,
 				943375CE29CCDB310043706B /* PhotosTableViewCell.swift in Sources */,
@@ -234,13 +234,13 @@
 				9473A0EB29ACA30D0012F0CF /* ProfileViewController.swift in Sources */,
 				9473A0E929ACA2CF0012F0CF /* FeedViewController.swift in Sources */,
 				9473A0ED29ACA3470012F0CF /* InfoViewController.swift in Sources */,
-				94512E4D29C98DB600829E18 /* Model.swift in Sources */,
+				94512E4D29C98DB600829E18 /* CollectionPost.swift in Sources */,
 				943375CA29CCDB000043706B /* PhotosViewController.swift in Sources */,
 				94512E4229B77A4300829E18 /* LogInViewController.swift in Sources */,
 				943375C829CCDAE60043706B /* CollectionViewCell.swift in Sources */,
 				9473A0D329ACA0090012F0CF /* SceneDelegate.swift in Sources */,
 				94512E4F29C98E6700829E18 /* PostTableViewCell.swift in Sources */,
-				94512E5229C9CF9C00829E18 /* ViewExtension.swift in Sources */,
+				94512E5229C9CF9C00829E18 /* View+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,7 +380,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_FILE = Navigation/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -406,7 +406,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_FILE = Navigation/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
