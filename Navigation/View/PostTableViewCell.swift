@@ -9,19 +9,10 @@ import UIKit
 
 class PostTableViewCell: UITableViewCell {
     
-    //MARK: - Post Image
-    private lazy var postImage: UIImageView = {
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.contentMode = .scaleAspectFill
-        image.clipsToBounds = true
-        image.layer.cornerRadius = 6
-        image.layer.borderColor = UIColor.systemGray.cgColor
-        image.backgroundColor = UIColor(named: "ColorBackground")
-        return image
-    }()
+    private var cartoonImage = Cartoons2022(author: "", image: "", likes: 1, views: 1, description: "")
+    private let screenWidth = UIScreen.main.bounds.width
 
-    //MARK: - Add Author Label
+//MARK: - Adding Author Label
     private lazy var authorLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
@@ -31,7 +22,7 @@ class PostTableViewCell: UITableViewCell {
         return label
     }()
 
-    //MARK: - Add Image View
+//MARK: - Adding Image View
     private lazy var myImageView: UIImageView = {
         let view = UIImageView()
         view.backgroundColor = UIColor(named: "ColorBackground")
@@ -41,58 +32,76 @@ class PostTableViewCell: UITableViewCell {
         return view
     }()
 
-    //MARK: - Add Description Label
+//MARK: - Adding Description Label
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14, weight: .regular)
         label.textColor = UIColor(named: "BorderStatusTextField")
         label.numberOfLines = 0
-        label.textAlignment = .justified
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
-    //MARK: - Add Likes Label
+//MARK: - Adding Likes Label
     private lazy var likesLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.textColor = UIColor(named: "ColorLabel")
-        label.numberOfLines = 1
+        label.isUserInteractionEnabled = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
-    //MARK: - Add Views Label
+//MARK: - Adding Views Label
     private lazy var viewsLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.textColor = UIColor(named: "ColorLabel")
-        label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        backgroundColor = UIColor(named: "ColorBackground")
         setupLayoutConstraints()
+        setupGestures()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+// MARK: - Setup Gestures Tap Like Label Gesture
+    private func setupGestures() {
+        let tapLikeLabelGesture = UITapGestureRecognizer(target: self, action: #selector(likeAction))
+        likesLabel.addGestureRecognizer(tapLikeLabelGesture)
+    }
+    
+// MARK: - Like Action Tap Like Label Gesture
+    @objc private func likeAction() {
+        UIView.animate(withDuration: 0.5,
+                       delay: 0.0,
+                       usingSpringWithDamping: 1.0,
+                       initialSpringVelocity: 0.0,
+                       options: .curveEaseInOut) {
+            
+            self.cartoonImage.likes += 1
+            self.likesLabel.text = "Likes \(self.cartoonImage.likes)"
+        }
+    }
 
-    //MARK: - Setup Cell
+//MARK: - Setup Cell
     func setupCell(cartoon: Cartoons2022) {
+        cartoonImage = cartoon
         authorLabel.text = cartoon.author
-        myImageView.image = cartoon.image
+        myImageView.image = UIImage(named: cartoon.image)
         likesLabel.text = "Likes: \(cartoon.likes)"
         viewsLabel.text = "Views: \(cartoon.likes)"
         descriptionLabel.text = cartoon.description
     }
 
-    let screenWidth = UIScreen.main.bounds.width
-
-    //MARK: - Setup Layout Constraints
+//MARK: - Setup Layout Constraints
     private func setupLayoutConstraints() {
 
         contentView.addSubview(authorLabel)
@@ -105,7 +114,6 @@ class PostTableViewCell: UITableViewCell {
 
             authorLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             authorLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            authorLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
 
             myImageView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 16),
             myImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),

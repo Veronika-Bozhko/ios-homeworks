@@ -15,20 +15,22 @@ class ProfileHeaderView: UIView {
     private var widthImage = NSLayoutConstraint()
     private var heightImage = NSLayoutConstraint()
     
-//MARK: - Adding Avatar Image
+    //MARK: - Add Avatar Image
     private lazy var avatarImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.image = #imageLiteral(resourceName: "Batman")
         image.contentMode = .scaleAspectFill
+        image.backgroundColor = .white
         image.clipsToBounds = true
         image.layer.cornerRadius = 50
         image.layer.borderWidth = 3
         image.layer.borderColor = UIColor.white.cgColor
+        image.layer.masksToBounds = true
         return image
     }()
     
-//MARK: - Adding Title Label
+    //MARK: - Add Title Label
     private lazy var fullNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -38,7 +40,7 @@ class ProfileHeaderView: UIView {
         return label
     }()
     
-//MARK: - Adding Status Label
+    //MARK: - Add Status Label
     private lazy var statusLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -48,7 +50,7 @@ class ProfileHeaderView: UIView {
         return label
     }()
     
-//MARK: - Adding Text Field
+    //MARK: - Add Text Field
     private lazy var statusTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -56,17 +58,17 @@ class ProfileHeaderView: UIView {
         textField.backgroundColor = UIColor(named: "ColorBackground")
         textField.layer.cornerRadius = 12
         textField.layer.borderWidth = 1
-        textField.textAlignment = .center
         textField.clearButtonMode = .whileEditing
         textField.layer.borderColor = UIColor(named: "BorderstatusTextField")?.cgColor
         textField.font = .systemFont(ofSize: 15, weight: .regular)
         textField.textColor = UIColor(named: "ColorLabel")
         textField.delegate = self
         textField.addTarget(self, action: #selector(textFieldAction), for: .editingChanged)
+        textField.indent(size: 10)
         return textField
     }()
     
-//MARK: - Adding Status Button
+    //MARK: - Add Status Button
     private lazy var setStatusButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -83,7 +85,7 @@ class ProfileHeaderView: UIView {
         return button
     }()
     
-//MARK: - Adding Cross Button for animation
+    //MARK: - Add CrossButton for animation
     private lazy var crossButton: UIButton = {
         let crossButton = UIButton()
         crossButton.translatesAutoresizingMaskIntoConstraints = false
@@ -94,7 +96,7 @@ class ProfileHeaderView: UIView {
         return crossButton
     }()
 
-//MARK: - Adding BlackView for animation
+    //MARK: - Add BlackView for animation
     private let blackView: UIView = {
         let viewBlack = UIView()
         viewBlack.translatesAutoresizingMaskIntoConstraints = false
@@ -107,7 +109,7 @@ class ProfileHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor(named: "ColorBackground")
-        setupLayoutConstraints()
+        setupLayout()
         setupGesture()
         addTap()
         setupAnimationAvatar()
@@ -117,43 +119,43 @@ class ProfileHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-//MARK: - Action Avatar Button
+    //MARK: - Action Avatar Button
     @objc private func avatarButtonAction(selector: UIButton) {
         if statusTextField.text == "" {
-            statusTextField.attributedPlaceholder = NSAttributedString(string: "Поле не может быть пустым...",
+            statusTextField.attributedPlaceholder = NSAttributedString(string: "Cannot be empty...",
                                                                        attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
 
         } else if statusTextField.text != "" {
-            statusTextField.attributedPlaceholder = NSAttributedString(string: "Установите статус...",
+            statusTextField.attributedPlaceholder = NSAttributedString(string: "Set your status...",
                                                                        attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
             statusLabel.text = statusTextField.text
         }
     }
     
-//MARK: - Action Text Field
+    //MARK: - Action Text Field
     @objc private func textFieldAction(_ textField:  UITextField) {
         statusText = statusLabel.text ?? ""
     }
 
-//MARK: - Remove Keyboard
+    //MARK: - Remove Keyboard
     private func addTap() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         addGestureRecognizer(tap)
     }
     
-//MARK: - Action Remove Keyboard
+    //MARK: - Action Remove Keyboard
     @objc private func hideKeyboard() {
         endEditing(true)
     }
     
-//MARK: - Setup Gesture for animation
+    //MARK: - SetupGesture for animation
     private func setupGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(actionTap))
         avatarImageView.isUserInteractionEnabled = true
         avatarImageView.addGestureRecognizer(tapGesture)
     }
 
-//MARK: - Action Tap for animation
+    //MARK: - Action Tap for animation
     @objc private func actionTap() {
 
         UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseInOut) {
@@ -172,7 +174,7 @@ class ProfileHeaderView: UIView {
         }
     }
 
-//MARK: - Cancel Action Animation
+    //MARK: - CancelAction Animation
     @objc private func cancelAction() {
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
             self.crossButton.alpha = 0
@@ -190,7 +192,7 @@ class ProfileHeaderView: UIView {
         }
     }
 
-//MARK: - Setup Animation Avatar
+    //MARK: - Setup Animation Avatar
   private func setupAnimationAvatar() {
 
         topImage = avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 20)
@@ -203,8 +205,8 @@ class ProfileHeaderView: UIView {
         ])
     }
 
-//MARK: - Setup Layout Constraints
-    private func setupLayoutConstraints() {
+    //MARK: - Setup Layout
+    private func setupLayout() {
 
         addSubview(avatarImageView)
         addSubview(setStatusButton)
@@ -249,10 +251,9 @@ class ProfileHeaderView: UIView {
 //MARK: - Blocking Set Status Button if there is no text
 extension ProfileHeaderView: UITextFieldDelegate {
 
-//MARK: - Remove The Keyboard
+    //MARK: - Remove The Keyboard
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         endEditing(true)
         return true
     }
 }
-

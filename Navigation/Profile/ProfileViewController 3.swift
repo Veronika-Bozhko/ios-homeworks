@@ -9,17 +9,15 @@ import UIKit
 
 final class ProfileViewController: UIViewController {
     
-    private var cartoon:[[Any]]  = [["Photos"], Cartoons2022.makePost()]
+    private var model:[[Any]]  = [["Photos"], Cartoons2022.makePost()]
 
-//MARK: - Add Table View
+    //MARK: - Add Table View
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.separatorStyle = .singleLine
+        tableView.separatorStyle = .none
         tableView.sectionHeaderTopPadding = .zero
         tableView.sectionHeaderHeight = .zero
         tableView.sectionFooterHeight = .zero
-        tableView.separatorColor = .black
-        tableView.separatorInset = .init(top: 0, left: 0, bottom: 0, right: 0)
         tableView.backgroundColor = UIColor(named: "ColorBackground")
         tableView.dataSource = self
         tableView.delegate = self
@@ -34,11 +32,10 @@ final class ProfileViewController: UIViewController {
         super.viewDidLoad()
         self.title = "Profile"
         view.backgroundColor = UIColor(named: "ColorBackground")
-        setupLayoutConstraints()
+        layout()
     }
     
-//MARK: - Setup Layout Constraints
-    private func setupLayoutConstraints() {
+    private func layout() {
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
@@ -50,26 +47,25 @@ final class ProfileViewController: UIViewController {
     }
 }
 
-//MARK: - Extension UITableViewDataSource
 extension ProfileViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return cartoon.count
+        return model.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        cartoon[section].count
+        return model[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
             let cell: PhotosTableViewCell = tableView.dequeueReusableCell(withIdentifier: PhotosTableViewCell.identifier, for: indexPath) as! PhotosTableViewCell
-            cell.delegate = self
+            cell.goToGalleryButton.addTarget(self, action: #selector(setupGoToGalleryButton), for: .touchUpInside)
             return cell
         
         default:
-            if let post: Cartoons2022 = cartoon[indexPath.section][indexPath.row] as? Cartoons2022 {
+            if let post: Cartoons2022 = model[indexPath.section][indexPath.row] as? Cartoons2022 {
                 let cell: PostTableViewCell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
                 cell.setupCell(cartoon: post)
                 return cell
@@ -78,6 +74,11 @@ extension ProfileViewController: UITableViewDataSource {
         }
     }
     
+    @objc private func setupGoToGalleryButton() {
+            let photosVC = PhotosViewController()
+            navigationController?.pushViewController(photosVC, animated: true)
+        }
+   
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
@@ -89,41 +90,21 @@ extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return UITableView.automaticDimension
     }
+    
 }
 
-//MARK: - Extension UITableViewDelegate
 extension ProfileViewController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return indexPath.section == 1
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if indexPath.section == 1 && editingStyle == .delete {
-            cartoon[indexPath.section].remove(at: indexPath.row)
+            model[indexPath.section].remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if var cartoon: Cartoons2022 = cartoon[indexPath.section][indexPath.row] as? Cartoons2022 {
-            let additionVC = AdditionViewController()
-            cartoon.views += 1
-            additionVC.viewsLabel.text = "Views: \(cartoon.views)"
-            additionVC.likesLabel.text = "Likes: \(cartoon.likes)"
-            additionVC.detailedImageView.image = UIImage(named: cartoon.image)
-            additionVC.descriptionLabel.text = cartoon.description
-            additionVC.titleLabel.text = cartoon.author
-            navigationController?.pushViewController(additionVC, animated: true)
-        }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
     }
 }
-
-//MARK: - Setting Gallery Button Action
-extension ProfileViewController: PhotosTableViewCellDelegate {
-    @objc internal func galleryButtonAction() {
-        let photosVC = PhotosViewController()
-        navigationController?.pushViewController(photosVC, animated: true)
-    }
-}
-
