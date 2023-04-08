@@ -9,9 +9,7 @@ import UIKit
 
 final class FeedViewController: UIViewController {
     
-//    private var postTitle = PostTitle(text: "Post")
-    
-    //MARK: - Add Stack View
+//MARK: - Add Stack View
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -23,7 +21,7 @@ final class FeedViewController: UIViewController {
         return stackView
     }()
 
-    //MARK: - Add TopButton Post
+//MARK: - Add TopButton Post
     private lazy var topButton: UIButton = {
         var topButton = UIButton()
         topButton.setTitle("Смотреть пост", for: .normal)
@@ -39,7 +37,7 @@ final class FeedViewController: UIViewController {
         return topButton
     }()
     
-    //MARK: - Add BottomButton Post
+//MARK: - Add BottomButton Post
     private lazy var bottomButton: UIButton = {
         var bottomButton = UIButton()
         bottomButton.setTitle("Смотреть пост", for: .normal)
@@ -60,13 +58,12 @@ final class FeedViewController: UIViewController {
         view.backgroundColor = UIColor(named: "ColorBackground")
         title = "Feed"
         setupButton()
-        setupConstraints()
+        setupLayoutConstraints()
     }
     
-    //MARK: - Action Button Post
+//MARK: - Action Button Post
     @objc func actionPostButton() {
         let postVC = PostViewController()
-//        postVC.title = postTitle.text
         navigationController?.pushViewController(postVC, animated: true)
     }
     
@@ -77,8 +74,8 @@ final class FeedViewController: UIViewController {
 
     }
 
-    //MARK: - Setup Constraints
-    private func setupConstraints() {
+    //MARK: - Setup Layout Constraints
+    private func setupLayoutConstraints() {
 
         NSLayoutConstraint.activate([
             
@@ -92,4 +89,3 @@ final class FeedViewController: UIViewController {
         ])
     }
 }
-

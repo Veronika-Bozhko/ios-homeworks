@@ -9,7 +9,7 @@ import UIKit
 
 class InfoViewController: UIViewController {
 
-    //MARK: - Add Back Button
+//MARK: - Add Back Button
     private lazy var backButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 300, height: 50))
         button.layer.cornerRadius = 16
@@ -26,14 +26,14 @@ class InfoViewController: UIViewController {
           setupButton()
       }
     
-    //MARK: - Setup Button
+//MARK: - Setup Button
     private func setupButton() {
         view.addSubview(backButton)
         backButton.center = view.center
         backButton.addTarget(self, action: #selector(backAction), for: .touchUpInside)
     }
     
-    //MARK: - Action Back Button
+//MARK: - Action Back Button
     @objc private func backAction() {
         
         let alert = UIAlertController(title: "Уверены?", message: nil, preferredStyle: .alert)
@@ -47,6 +47,7 @@ class InfoViewController: UIViewController {
         alert.addAction(cancelAction)
         alert.addAction(okAction)
         present(alert, animated: true)
+        
     }
 }
     
